@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "docker-webhook-admin", "src\docker-webhook-admin\docker-webhook-admin.xproj", "{A17433B0-20E2-4CB0-AA04-947DEA517F6E}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Docker.WebHook.Admin", "src\docker-webhook-admin\Docker.WebHook.Admin.xproj", "{A17433B0-20E2-4CB0-AA04-947DEA517F6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

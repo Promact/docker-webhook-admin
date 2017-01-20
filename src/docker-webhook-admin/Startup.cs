@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using docker_webhook_admin.Data;
 using docker_webhook_admin.Models;
 using docker_webhook_admin.Services;
+using Docker.Webhook.Admin.Models;
 
 namespace docker_webhook_admin
 {
@@ -52,14 +53,14 @@ namespace docker_webhook_admin
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<Files>(files => files.ScriptFile = Configuration.GetSection("ScriptFile").Value);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
+            //loggerFactory.
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
