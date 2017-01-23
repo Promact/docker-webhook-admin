@@ -27,7 +27,7 @@ namespace Docker.Webhook.Admin.Controllers
         [Route("test")]
         public async Task<IActionResult> HubAsync(WebHookModel webHook)
         {
-            Console.WriteLine("========="+DateTime.Now.ToString(CultureInfo.InvariantCulture)+"===========");
+            Console.WriteLine("=========" + DateTime.Now.ToString(CultureInfo.InvariantCulture) + "===========");
             Console.WriteLine("=========Method Start==========");
             string webhookData;
             using (StreamReader reader = new StreamReader(this.Request.Body))
@@ -38,45 +38,43 @@ namespace Docker.Webhook.Admin.Controllers
             Console.WriteLine(webhookData);
             WebHookModel model = JsonConvert.DeserializeObject<WebHookModel>(webhookData);
             Console.WriteLine("=========Deserialize Data==========");
-            await Task.Run(() =>
-            {
-                Console.WriteLine("=========Task Started==========");
-                string processFile = "/bin/bash";
-                ProcessStartInfo processStartInfo = new ProcessStartInfo(processFile)
-                {                    
-                    UseShellExecute = false,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    Arguments = "-c " + _configuration.Value.ScriptFile
-                };
-                var process = new Process
-                {
-                    EnableRaisingEvents = true,
-                    StartInfo = processStartInfo
-                };
-                try
-                {
-                    Console.WriteLine("=========Starting Process==========");
-                    process.Start();
-                    Console.WriteLine("=========Process executed with 0==========");                    
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("=========Exception==========");                    
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
-                }
-                finally
-                {
-                    string errors = process.StandardError.ReadToEnd();
-                    string output = process.StandardOutput.ReadToEnd();
 
-                    Console.WriteLine(errors);
-                    Console.WriteLine(output);
-                    process.Dispose();
-                }
-                Console.WriteLine("=========Task Executed==========");
-            });            
+            Console.WriteLine("=========Task Started==========");
+            string processFile = "/bin/bash";
+            ProcessStartInfo processStartInfo = new ProcessStartInfo(processFile)
+            {
+                UseShellExecute = false,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                Arguments = "-c " + _configuration.Value.ScriptFile
+            };
+            var process = new Process
+            {
+                EnableRaisingEvents = true,
+                StartInfo = processStartInfo
+            };
+            try
+            {
+                Console.WriteLine("=========Starting Process==========");
+                process.Start();
+                Console.WriteLine("=========Process executed with 0==========");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("=========Exception==========");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                string errors = process.StandardError.ReadToEnd();
+                string output = process.StandardOutput.ReadToEnd();
+
+                Console.WriteLine(errors);
+                Console.WriteLine(output);
+                process.Dispose();
+            }
+            Console.WriteLine("=========Task Executed==========");
             return Ok();
         }
     }
