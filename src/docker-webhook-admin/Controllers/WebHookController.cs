@@ -33,7 +33,7 @@ namespace Docker.Webhook.Admin.Controllers
                 webhookData = await reader.ReadToEndAsync();
             }
             Console.WriteLine("=========Received Webhook==========");
-            System.IO.File.AppendAllText("/var/log/webhook.out.log", webhookData);
+            Console.WriteLine(webhookData);
             WebHookModel model = JsonConvert.DeserializeObject<WebHookModel>(webhookData);
             Console.WriteLine("=========Deserialize Data==========");
             await Task.Run(() =>
@@ -57,22 +57,21 @@ namespace Docker.Webhook.Admin.Controllers
                 {
                     Console.WriteLine("=========Starting Process==========");
                     process.Start();
-                    Console.WriteLine("=========Process executed with 0==========");
+                    Console.WriteLine("=========Process executed with 0==========");                    
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("=========Exception==========");
+                    Console.WriteLine("=========Exception==========");                    
+                    Console.WriteLine(ex.Message);
                     Console.WriteLine(ex.StackTrace);
-                    System.IO.File.AppendAllText("/var/log/webhook.err.log", ex.Message);
-                    System.IO.File.AppendAllText("/var/log/webhook.err.log", ex.StackTrace);
                 }
                 finally
                 {
                     string errors = process.StandardError.ReadToEnd();
                     string output = process.StandardOutput.ReadToEnd();
 
-                    System.IO.File.AppendAllText("/var/log/webhook.err.log", errors);
-                    System.IO.File.AppendAllText("/var/log/webhook.out.log", output);
+                    Console.WriteLine(errors);
+                    Console.WriteLine(output);
                     process.Dispose();
                 }
                 Console.WriteLine("=========Task Executed==========");
