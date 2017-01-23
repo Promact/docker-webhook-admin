@@ -26,15 +26,19 @@ namespace Docker.Webhook.Admin.Controllers
         [Route("test")]
         public async Task<IActionResult> HubAsync(WebHookModel webHook)
         {
+            Console.WriteLine("=========Method Start==========");
             string webhookData = "";
             using (StreamReader reader = new StreamReader(this.Request.Body))
             {
                 webhookData = await reader.ReadToEndAsync();
             }
-            //System.IO.File.AppendAllText("/var/log/webhook.out.log", webhookData);
+            Console.WriteLine("=========Received Webhook==========");
+            System.IO.File.AppendAllText("/var/log/webhook.out.log", webhookData);
             WebHookModel model = JsonConvert.DeserializeObject<WebHookModel>(webhookData);
+            Console.WriteLine("=========Deserialize Data==========");
             await Task.Run(() =>
             {
+                Console.WriteLine("=========Task Started==========");
                 string processFile = "/bin/bash";
                 ProcessStartInfo processStartInfo = new ProcessStartInfo(processFile)
                 {
@@ -51,10 +55,14 @@ namespace Docker.Webhook.Admin.Controllers
                 };
                 try
                 {
+                    Console.WriteLine("=========Starting Process==========");
                     process.Start();
+                    Console.WriteLine("=========Process executed with 0==========");
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("=========Exception==========");
+                    Console.WriteLine(ex.StackTrace);
                     System.IO.File.AppendAllText("/var/log/webhook.err.log", ex.Message);
                     System.IO.File.AppendAllText("/var/log/webhook.err.log", ex.StackTrace);
                 }
@@ -67,6 +75,7 @@ namespace Docker.Webhook.Admin.Controllers
                     System.IO.File.AppendAllText("/var/log/webhook.out.log", output);
                     process.Dispose();
                 }
+                Console.WriteLine("=========Task Executed==========");
             });            
             return Ok();
         }
