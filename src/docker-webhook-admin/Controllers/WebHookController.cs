@@ -41,8 +41,7 @@ namespace Docker.Webhook.Admin.Controllers
                 Console.WriteLine("=========Task Started==========");
                 string processFile = "/bin/bash";
                 ProcessStartInfo processStartInfo = new ProcessStartInfo(processFile)
-                {
-                    LoadUserProfile = false,
+                {                    
                     UseShellExecute = false,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
