@@ -67,11 +67,11 @@ namespace Docker.Webhook.Admin.Controllers
             }
             finally
             {
-                //string errors = process.StandardError.ReadToEnd();
-                //string output = process.StandardOutput.ReadToEnd();
+                string errors = await process.StandardError.ReadToEndAsync();
+                string output = await process.StandardOutput.ReadToEndAsync();
 
-                //Console.WriteLine(errors);
-                //Console.WriteLine(output);
+                Console.WriteLine(errors);
+                Console.WriteLine(output);
                 process.Dispose();
             }
             Console.WriteLine("=========Task Executed==========");
