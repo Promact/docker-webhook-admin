@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,9 @@ namespace Docker.Webhook.Admin.Controllers
         [Route("test")]
         public async Task<IActionResult> HubAsync(WebHookModel webHook)
         {
+            Console.WriteLine("========="+DateTime.Now.ToString(CultureInfo.InvariantCulture)+"===========");
             Console.WriteLine("=========Method Start==========");
-            string webhookData = "";
+            string webhookData;
             using (StreamReader reader = new StreamReader(this.Request.Body))
             {
                 webhookData = await reader.ReadToEndAsync();
