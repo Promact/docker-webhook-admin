@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using docker_webhook_admin.Data;
+using docker_webhook_admin.Models;
+using docker_webhook_admin.Services;
+using Docker.Webhook.Admin.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,12 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using docker_webhook_admin.Data;
-using docker_webhook_admin.Models;
-using docker_webhook_admin.Services;
-using Docker.Webhook.Admin.Models;
+using Webpack;
 
-namespace docker_webhook_admin
+namespace Docker.Webhook.Admin
 {
     public class Startup
     {
@@ -75,6 +72,7 @@ namespace docker_webhook_admin
             app.UseStaticFiles();
 
             app.UseIdentity();
+            app.UseWebpack(new WebpackOptions());
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -82,7 +80,7 @@ namespace docker_webhook_admin
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action}/{id?}");
             });
         }
     }
