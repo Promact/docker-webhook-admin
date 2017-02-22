@@ -1,9 +1,12 @@
-﻿using docker_webhook_admin.Data;
+﻿using System;
+using System.Linq;
+using docker_webhook_admin.Data;
 using docker_webhook_admin.Models;
 using docker_webhook_admin.Services;
 using Docker.Webhook.Admin.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,17 +21,17 @@ namespace Docker.Webhook.Admin
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(env.ContentRootPath)                
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
-
-            builder.AddEnvironmentVariables();
+            
             Configuration = builder.Build();
         }
 
@@ -37,6 +40,17 @@ namespace Docker.Webhook.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -68,11 +82,33 @@ namespace Docker.Webhook.Admin
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            var angularRoutes = new[] {
+                 "/home",
+                 "/about"
+             };
 
-            app.UseStaticFiles();
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.HasValue && null != angularRoutes.FirstOrDefault(
+                    (ar) => context.Request.Path.Value.StartsWith(ar, StringComparison.OrdinalIgnoreCase)))
+                {
+                    context.Request.Path = new PathString("/");
+                }
 
-            app.UseIdentity();
-            app.UseWebpack(new WebpackOptions());
+                await next();
+            });
+
+            app.UseCors("AllowAllOrigins");
+            app.UseDefaultFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
+                {
+                    context.Context.Response.Headers.Remove("Content-Length");
+                }
+            });
+
+            app.UseIdentity();            
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -80,7 +116,7 @@ namespace Docker.Webhook.Admin
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

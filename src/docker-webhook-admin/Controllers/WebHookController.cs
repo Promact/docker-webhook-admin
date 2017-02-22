@@ -2,8 +2,12 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Docker.DotNet;
+using Docker.DotNet.Models;
 using Docker.Webhook.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +31,20 @@ namespace Docker.Webhook.Admin.Controllers
         [Route("test")]
         public async Task<IActionResult> HubAsync(WebHookModel webHook)
         {
+            var dockerOptions = new DockerOptions();
+            DockerClient client = new DockerClientConfiguration(new Uri(dockerOptions.DockerApiUrl)).CreateClient();
+            using (client)
+            {
+                var containers = await client.Containers.ListContainersAsync(new ContainersListParameters() { All = true });
+                var images = await client.Images.ListImagesAsync(new ImagesListParameters() { All = true });
+                foreach (var image in images)
+                {
+                    await client.Containers.RestartContainerAsync(containers.First().ID,new ConatinerRestartParameters()
+                    {
+                        
+                    },CancellationToken.None);
+                }
+            }
             Console.WriteLine("=========" + DateTime.Now.ToString(CultureInfo.InvariantCulture) + "===========");
             Console.WriteLine("=========Method Start==========");
             string webhookData;

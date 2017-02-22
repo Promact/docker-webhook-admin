@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using docker_webhook_admin.Models;
 using docker_webhook_admin.Models.AccountViewModels;
 using docker_webhook_admin.Services;
+using Docker.Webhook.Admin.Controllers;
 
 namespace docker_webhook_admin.Controllers
 {
@@ -134,7 +136,7 @@ namespace docker_webhook_admin.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return Ok();
         }
 
         //
@@ -459,7 +461,7 @@ namespace docker_webhook_admin.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return Ok();
             }
         }
 

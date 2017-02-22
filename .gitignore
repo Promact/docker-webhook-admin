@@ -253,7 +253,6 @@ paket-files/
 /src/docker-webhook-admin/Properties/PublishProfiles
 *.js
 *.map
-wwwroot/assets/
-wwwroot/index.html
+**/wwwroot/*
 .css
 _references.js
