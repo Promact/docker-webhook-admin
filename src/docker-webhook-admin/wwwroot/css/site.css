@@ -1,50 +1,220 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/* General */
+.text-light-grey {
+    color: #8E8E8E;
+}
+.p0 {
+    padding: 0;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
+/* Layout Styles */
+.navbar {
+    background-color: #fff;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+.navbar .nav {
+
+}
+.navbar .nav li {
+
+}
+.navbar .nav li a {
+    color: #337ab7;
+    text-transform: uppercase;
+}
+.navbar .nav li a:hover {
+    color: #337ab7;
+    text-decoration: underline;
+}
+.navbar .nav li a i {
+    padding-right: 5px;
+}
+.main-container {
+
+}
+.main-container .left-sidebar {
+    border-right: 1px solid #E7E7E7;
+    min-height: 100vh;
+    padding: 51px 0 0;
+}
+.main-container .left-sidebar .nav-tabs {
+
+}
+.main-container .left-sidebar .nav-tabs li {
+    margin-bottom: 0;
+    border-right: 1px solid #E7E7E7;
+    text-align: center;
+}
+.main-container .left-sidebar .nav-tabs li:last-child {
+    border-right: 0;
+}
+.main-container .left-sidebar .nav-tabs li:hover {
+    cursor: pointer;
+}
+.main-container .left-sidebar .nav-tabs li:hover a {
+    color: #337ab7;
+}
+.main-container .left-sidebar .nav-tabs a {
+    border-color: transparent;
+    color: #555;
+    border-bottom: 2px solid transparent;
+}
+.main-container .left-sidebar .nav-tabs a:hover, .main-container .left-sidebar .nav-tabs a:focus {
+    border-color: transparent;
+    background-color: transparent;
+    border-bottom-width: 2px;
+}
+.main-container .left-sidebar .nav-tabs li.active {
+    background-color: #337ab7;
+}
+.main-container .left-sidebar .nav-tabs li.active a {
+    cursor: pointer;
+    background-color: #337ab7;
+    color: #fff;
+}
+.main-container .left-sidebar .tab-content {
+
+}
+.main-container .left-sidebar .tab-content .tab-pane {
+
+}
+.main-container .left-sidebar .tab-content .tab-pane .new-btn {
+    padding: 10px 20px;
+    text-align: right;
+    font-size: 24px;
+    line-height: 20px;
+}
+.main-container .left-sidebar .tab-content .tab-pane .new-btn a {
+
+}
+.main-container .left-sidebar .tab-content .tab-pane .new-btn a i {
+
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area {
+    list-style: none;
+    padding-left: 0;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li {
+
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a {
+    display: inline-block;
+    padding: 10px 15px;
+    width: 100%;
+    color: #555;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a:hover {
+    text-decoration: none;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a:hover i, .main-container .left-sidebar .tab-content .tab-pane .list-area li a:hover > span span {
+    color: #337ab7;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a i {
+    font-size: 30px;
+    vertical-align: middle;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a > span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+.main-container .left-sidebar .tab-content .tab-pane .list-area li a > span span {
+    display: block;
+}
+.main-container .left-sidebar .bottom-actions {
+    position: fixed;
+    width: 25%;
+    bottom: 0;
+    border-top: 1px solid #E7E7E7;
+}
+.main-container .left-sidebar .bottom-actions > div {
+    border-right: 1px solid #E7E7E7;
+    text-align: center;
+}
+.main-container .left-sidebar .bottom-actions > div:last-child {
+    border-right: 0;
+}
+.main-container .left-sidebar .bottom-actions > div a {
+    display: block;
+    padding: 10px 0;
+}
+.main-container .left-sidebar .bottom-actions > div a i {
+
+}
+.main-container .content-area {
+    padding: 51px 0 0;
+    background-color: #F7F7F7;
+    min-height: 100vh;
+}
+.main-container .content-area .content-header {
+    background-color: #fff;
+    border-bottom: 1px solid #E7E7E7;
+}
+.main-container .content-area .content-header .search-area {
+
+}
+.main-container .content-area .content-header .search-area .input-group {
+    padding: 5px 0 0 15px;
+}
+.main-container .content-area .content-header .search-area .input-group .input-group-btn {
+
+}
+.main-container .content-area .content-header .search-area .input-group .input-group-btn .btn {
+    border-radius: 0;
+    border-right: 0;
+    cursor: default;
+}
+.main-container .content-area .content-header .search-area .input-group .input-group-btn .btn:hover {
+    background-color: transparent;
+    border-color: #CCC;
+}
+.main-container .content-area .content-header .search-area .input-group .input-group-btn .btn i {
+
+}
+.main-container .content-area .content-header .search-area .input-group input {
+    border-radius: 0;
+    border-left: 0;
+    box-shadow: none;
+    padding-left: 0;
+}
+.main-container .content-area .content-header .search-area .input-group input:focus {
+    border-color: #CCC;
+}
+.main-container .content-area .content-header .nav-tabs {
+    border-bottom: 0;
     padding-right: 15px;
 }
-
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+.main-container .content-area .content-header .nav-tabs li {
+    margin-bottom: 0;
 }
-
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+.main-container .content-area .content-header .nav-tabs li a {
+    border-radius: 0;
+    border-color: transparent;
+    border-bottom: 2px solid transparent;
+    color: #555;
 }
-
-/* buttons and links extension to use brackets: [ click me ] */
-.btn-bracketed::before {
-    display:inline-block;
-    content: "[";
-    padding-right: 0.5em;
+.main-container .content-area .content-header .nav-tabs li a:hover {
+    background-color: transparent;
+    color: #337ab7;
 }
-.btn-bracketed::after {
-    display:inline-block;
-    content: "]";
-    padding-left: 0.5em;
-}
+.main-container .content-area .content-header .nav-tabs li.active {
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"]
-{
-    width: 100%;
 }
+.main-container .content-area .content-header .nav-tabs li.active a {
+    cursor: pointer;
+    border-bottom-color: #337ab7;
+}
+.main-container .content-area .content-body {
+    padding: 15px;
+}
+.main-container .content-area .content-body .tab-content {
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-  /* Hide captions */
-  .carousel-caption {
-    display: none
-  }
+}
+.main-container .content-area .content-body .tab-content .tab-pane {
+
 }

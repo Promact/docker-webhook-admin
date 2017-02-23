@@ -17,7 +17,7 @@ module.exports = {
     },
     entry: {
         'polyfills': './angularApp/polyfills.ts',
-        'vendor': './angularApp/vendor.ts',
+        //'vendor': './angularApp/vendor.ts',
         'app': './angularApp/main.ts'
     },
 
