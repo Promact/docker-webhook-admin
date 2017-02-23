@@ -39,10 +39,11 @@
       "type": "build"
     },
     "Docker.DotNet": "2.124.3",
-    "Microsoft.AspNetCore.Mvc": "1.1.1",
-    "Webpack": "3.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.1",    
     "Autofac": "4.3.0",
-    "Autofac.Extensions.DependencyInjection": "4.0.0"
+    "Autofac.Extensions.DependencyInjection": "4.0.0",
+    "MySql.Data.EntityFrameworkCore": "7.0.6-IR31",
+    "NLog.Web.AspNetCore": "4.3.1"
   },
 
   "tools": {
@@ -86,7 +87,8 @@
       "wwwroot",
       "**/*.cshtml",
       "appsettings.json",
-      "web.config"
+      "web.config",
+      "nlog.config"
     ]
   },
 

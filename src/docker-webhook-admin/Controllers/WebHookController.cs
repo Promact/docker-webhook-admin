@@ -11,6 +11,7 @@ using Docker.DotNet.Models;
 using Docker.Webhook.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
@@ -21,78 +22,33 @@ namespace Docker.Webhook.Admin.Controllers
     [Route("api/webhook")]
     public class WebHookController : Controller
     {
-        private readonly IOptions<Files> _configuration;
-
-        public WebHookController(IOptions<Files> configuration)
+        private readonly IDockerClient _dockerClient;
+        private readonly ILogger<WebHookController> _logger;
+        public WebHookController(IDockerClient dockerClient,ILogger<WebHookController> logger)
         {
-            _configuration = configuration;
+            _dockerClient = dockerClient;
+            _logger = logger;
         }
 
         [Route("test")]
         public async Task<IActionResult> HubAsync(WebHookModel webHook)
         {
-            var dockerOptions = new DockerOptions();
-            DockerClient client = new DockerClientConfiguration(new Uri(dockerOptions.DockerApiUrl)).CreateClient();
-            using (client)
+            
+            await _dockerClient.Images.PullImageAsync(new ImagesPullParameters()
             {
-                var containers = await client.Containers.ListContainersAsync(new ContainersListParameters() { All = true });
-                var images = await client.Images.ListImagesAsync(new ImagesListParameters() { All = true });
-                foreach (var image in images)
-                {
-                    await client.Containers.RestartContainerAsync(containers.First().ID,new ConatinerRestartParameters()
-                    {
-                        
-                    },CancellationToken.None);
-                }
-            }
-            Console.WriteLine("=========" + DateTime.Now.ToString(CultureInfo.InvariantCulture) + "===========");
-            Console.WriteLine("=========Method Start==========");
-            string webhookData;
-            using (StreamReader reader = new StreamReader(this.Request.Body))
-            {
-                webhookData = await reader.ReadToEndAsync();
-            }
-            Console.WriteLine("=========Received Webhook==========");
-            Console.WriteLine(webhookData);
-            WebHookModel model = JsonConvert.DeserializeObject<WebHookModel>(webhookData);
-            Console.WriteLine("=========Deserialize Data==========");
+                All = true,
+                Parent = "promact/oauth-server",
+                Tag = "dev"
+            }, null);
 
-            Console.WriteLine("=========Task Started==========");
-            string processFile = "/bin/bash";
-            ProcessStartInfo processStartInfo = new ProcessStartInfo(processFile)
-            {
-                UseShellExecute = false,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                Arguments = "-c " + _configuration.Value.ScriptFile
-            };
-            var process = new Process
-            {
-                EnableRaisingEvents = true,
-                StartInfo = processStartInfo
-            };
-            try
-            {
-                Console.WriteLine("=========Starting Process==========");
-                process.Start();
-                Console.WriteLine("=========Process executed with 0==========");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("=========Exception==========");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
-            finally
-            {
-                string errors = await process.StandardError.ReadToEndAsync();
-                string output = await process.StandardOutput.ReadToEndAsync();
+            var runningContainer = await _dockerClient.Containers.ListContainersAsync(new ContainersListParameters() { All = true });
 
-                Console.WriteLine(errors);
-                Console.WriteLine(output);
-                process.Dispose();
-            }
-            Console.WriteLine("=========Task Executed==========");
+            await _dockerClient.Containers.RestartContainerAsync(runningContainer.First(x => x.Names.Contains("oauth")).ID, new ConatinerRestartParameters(), CancellationToken.None);
+            return Ok();
+        }
+
+        public async Task<IActionResult> CreateWebHookAsync()
+        {
             return Ok();
         }
     }

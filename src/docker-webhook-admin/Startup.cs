@@ -15,7 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Webpack;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace Docker.Webhook.Admin
 {
@@ -34,7 +35,7 @@ namespace Docker.Webhook.Admin
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
-            
+            env.ConfigureNLog("nlog.config");
             Configuration = builder.Build();
         }
 
@@ -69,6 +70,7 @@ namespace Docker.Webhook.Admin
             containerBuilder.Populate(services);
             containerBuilder.RegisterType<AuthMessageSender>().As<IEmailSender>();
             containerBuilder.RegisterType<AuthMessageSender>().As<IEmailSender>();
+            
             containerBuilder.Register(cont => new DockerClientConfiguration(new Uri((new DockerOptions()).DockerApiUrl)).CreateClient()).As<IDockerClient>();
             return new AutofacServiceProvider(containerBuilder.Build());            
         }
@@ -77,6 +79,7 @@ namespace Docker.Webhook.Admin
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddNLog();
             //loggerFactory.
             if (env.IsDevelopment())
             {
