@@ -40,7 +40,9 @@
     },
     "Docker.DotNet": "2.124.3",
     "Microsoft.AspNetCore.Mvc": "1.1.1",
-    "Webpack": "3.0.0"
+    "Webpack": "3.0.0",
+    "Autofac": "4.3.0",
+    "Autofac.Extensions.DependencyInjection": "4.0.0"
   },
 
   "tools": {
@@ -67,7 +69,10 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "compile": {
+      "exclude": [ "node_modules" ]
+    }
   },
 
   "runtimeOptions": {

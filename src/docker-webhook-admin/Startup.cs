@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using docker_webhook_admin.Data;
 using docker_webhook_admin.Models;
 using docker_webhook_admin.Services;
+using Docker.DotNet;
 using Docker.Webhook.Admin.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +41,7 @@ namespace Docker.Webhook.Admin
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
@@ -62,9 +65,12 @@ namespace Docker.Webhook.Admin
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.Configure<Files>(files => files.ScriptFile = Configuration.GetSection("ScriptFile").Value);            
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.Populate(services);
+            containerBuilder.RegisterType<AuthMessageSender>().As<IEmailSender>();
+            containerBuilder.RegisterType<AuthMessageSender>().As<IEmailSender>();
+            containerBuilder.Register(cont => new DockerClientConfiguration(new Uri((new DockerOptions()).DockerApiUrl)).CreateClient()).As<IDockerClient>();
+            return new AutofacServiceProvider(containerBuilder.Build());            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
