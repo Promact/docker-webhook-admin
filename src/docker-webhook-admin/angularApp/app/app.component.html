@@ -1,33 +1,6 @@
-﻿<!--<navigation></navigation>
-
-<div class="container">
-
-    <router-outlet></router-outlet>
-
-    <customfooter></customfooter>
-</div>-->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand Logo</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i>Login</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+﻿<navigation></navigation>
 <div class="main-container clearfix">
-    <div class="col-md-3 left-sidebar">
+    <div class="col-md-2 left-sidebar">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <li class="col-md-6 active"><a href="#tab1" data-toggle="tab">Tab1</a></li>
@@ -138,7 +111,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9 content-area">
+    <div class="col-md-10 content-area">
         <div class="content-header clearfix">
             <div class="search-area">
                 <div class="col-md-5 p0">
@@ -160,17 +133,6 @@
             </div>
         </div>
         <div class="content-body">
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="contenttab1">
-                    <h3>Tab1 Content</h3>
-                </div>
-                <div class="tab-pane fade" id="contenttab2">
-                    <h3>Tab2 Content</h3>
-                </div>
-                <div class="tab-pane fade" id="contenttab3">
-                    <h3>Tab3 Content</h3>
-                </div>
-            </div>
             <router-outlet></router-outlet>
         </div>
     </div>

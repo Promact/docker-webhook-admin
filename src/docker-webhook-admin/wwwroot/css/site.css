@@ -17,12 +17,6 @@
     right: 0;
     z-index: 99;
 }
-.navbar .nav {
-
-}
-.navbar .nav li {
-
-}
 .navbar .nav li a {
     color: #337ab7;
     text-transform: uppercase;
@@ -34,16 +28,10 @@
 .navbar .nav li a i {
     padding-right: 5px;
 }
-.main-container {
-
-}
 .main-container .left-sidebar {
     border-right: 1px solid #E7E7E7;
     min-height: 100vh;
     padding: 51px 0 0;
-}
-.main-container .left-sidebar .nav-tabs {
-
 }
 .main-container .left-sidebar .nav-tabs li {
     margin-bottom: 0;
@@ -77,30 +65,15 @@
     background-color: #337ab7;
     color: #fff;
 }
-.main-container .left-sidebar .tab-content {
-
-}
-.main-container .left-sidebar .tab-content .tab-pane {
-
-}
 .main-container .left-sidebar .tab-content .tab-pane .new-btn {
     padding: 10px 20px;
     text-align: right;
     font-size: 24px;
     line-height: 20px;
 }
-.main-container .left-sidebar .tab-content .tab-pane .new-btn a {
-
-}
-.main-container .left-sidebar .tab-content .tab-pane .new-btn a i {
-
-}
 .main-container .left-sidebar .tab-content .tab-pane .list-area {
     list-style: none;
     padding-left: 0;
-}
-.main-container .left-sidebar .tab-content .tab-pane .list-area li {
-
 }
 .main-container .left-sidebar .tab-content .tab-pane .list-area li a {
     display: inline-block;
@@ -128,7 +101,7 @@
 }
 .main-container .left-sidebar .bottom-actions {
     position: fixed;
-    width: 25%;
+    width: 16.66666667%;
     bottom: 0;
     border-top: 1px solid #E7E7E7;
 }
@@ -143,9 +116,6 @@
     display: block;
     padding: 10px 0;
 }
-.main-container .left-sidebar .bottom-actions > div a i {
-
-}
 .main-container .content-area {
     padding: 51px 0 0;
     background-color: #F7F7F7;
@@ -155,14 +125,8 @@
     background-color: #fff;
     border-bottom: 1px solid #E7E7E7;
 }
-.main-container .content-area .content-header .search-area {
-
-}
 .main-container .content-area .content-header .search-area .input-group {
     padding: 5px 0 0 15px;
-}
-.main-container .content-area .content-header .search-area .input-group .input-group-btn {
-
 }
 .main-container .content-area .content-header .search-area .input-group .input-group-btn .btn {
     border-radius: 0;
@@ -172,9 +136,6 @@
 .main-container .content-area .content-header .search-area .input-group .input-group-btn .btn:hover {
     background-color: transparent;
     border-color: #CCC;
-}
-.main-container .content-area .content-header .search-area .input-group .input-group-btn .btn i {
-
 }
 .main-container .content-area .content-header .search-area .input-group input {
     border-radius: 0;
@@ -202,9 +163,6 @@
     background-color: transparent;
     color: #337ab7;
 }
-.main-container .content-area .content-header .nav-tabs li.active {
-
-}
 .main-container .content-area .content-header .nav-tabs li.active a {
     cursor: pointer;
     border-bottom-color: #337ab7;
@@ -212,9 +170,85 @@
 .main-container .content-area .content-body {
     padding: 15px;
 }
-.main-container .content-area .content-body .tab-content {
-
+.main-container .content-area .content-body .box-row {
+    padding: 0 8px 15px;
 }
-.main-container .content-area .content-body .tab-content .tab-pane {
-
+.main-container .content-area .content-body .box-row:last-of-type {
+    padding-bottom: 0;
+}
+.main-container .content-area .content-body .box-row .box-col {
+    padding: 0 7px;
+}
+.main-container .content-area .content-body .box-container {
+    border: 1px solid #E7E7E7;
+}
+.main-container .content-area .content-body .box-container .icon-block {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 24px;
+    background-color: #337ab7;
+    color: #fff;
+    min-height: 159px;
+}
+.main-container .content-area .content-body .box-container .content-block {
+    padding: 0;
+    background-color: #fff;
+}
+.main-container .content-area .content-body .box-container .content-block p {
+    margin-bottom: 0;
+    padding: 0px 10px;
+}
+.main-container .content-area .content-body .box-container .content-block p.title {
+    padding-top: 6px;
+}
+.main-container .content-area .content-body .box-container .content-block p.subtitle {
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+.main-container .content-area .content-body .box-container .content-block p.text {
+    color: #8E8E8E;
+    padding-bottom: 6px;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area {
+    border-top: 1px solid #E7E7E7;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .like-area {
+    padding: 0;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .like-area a {
+    display: block;
+    padding: 8px 10px;
+    color: #555;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .like-area a:hover, .main-container .content-area .content-body .box-container .content-block .actions-area .like-area a:hover i {
+    color: #337ab7;
+    text-decoration: none;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .like-area a i {
+    color: #8E8E8E;
+    padding-right: 5px;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .options-area {
+    padding: 0;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .options-area a {
+    display: block;
+    padding: 8px 0;
+    text-align: center;
+    border-left: 1px solid #E7E7E7;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .options-area a:hover, .main-container .content-area .content-body .box-container .content-block .actions-area .options-area a:hover i {
+    color: #337ab7
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .options-area a i {
+    color: #8E8E8E;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .create-btn {
+    padding: 0;
+}
+.main-container .content-area .content-body .box-container .content-block .actions-area .create-btn a {
+    display: block;
+    padding: 8px 0;
+    text-align: center;
+    border: 1px solid;
 }
