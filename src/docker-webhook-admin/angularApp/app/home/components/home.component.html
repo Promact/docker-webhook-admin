@@ -1,43 +1,292 @@
-﻿<div class="container-fluid">
-
-    <h1>{{message}}</h1>
-
-    <div class="row">
-        <form class="form-inline" (ngSubmit)="addThing()" #thingForm="ngForm">
-            <div class="form-group">
-                <label class="sr-only" for="exampleInputThing">Thing</label>
-                <input type="text" class="form-control" id="exampleInputThing" placeholder="Name of the thing ..." name="thing" [(ngModel)]="thing.name"
-                    required>
+﻿<div class="tab-content">
+    <div class="tab-pane fade in active" id="contenttab1">
+        <div class="row box-row">
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!thingForm.valid">Create new Thing</button>
-        </form>
-    </div>
-
-    <div class="row" *ngIf="things.length > 0">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th class="text-right"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let thing of things; let i = index">
-                        <td>{{i + 1}}</td>
-                        <td>{{thing.name}}</td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-xs btn-danger" (click)="deleteThing(thing)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row box-row">
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row box-row">
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 box-col">
+                <div class="box-container clearfix">
+                    <div class="col-md-2 icon-block">
+                        <i class="glyphicon glyphicon-apple"></i>
+                    </div>
+                    <div class="col-md-10 content-block">
+                        <p class="title">kitematic</p>
+                        <p class="subtitle">hello-world-nginx</p>
+                        <p class="text">A light-weight nginx container that demonstrates the features of Kitematic</p>
+                        <div class="actions-area clearfix">
+                            <div class="col-md-5 like-area">
+                                <a href=""><i class="glyphicon glyphicon-heart-empty"></i>8</a>
+                            </div>
+                            <div class="col-md-2 options-area">
+                                <a href=""><i class="glyphicon glyphicon-option-horizontal"></i></a>
+                            </div>
+                            <div class="col-md-5 create-btn">
+                                <a href="">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row" *ngIf="things.length <= 0">
-        <span>No items found</span>
+    <div class="tab-pane fade" id="contenttab2">
+        <h3>Tab2 Content</h3>
     </div>
-
+    <div class="tab-pane fade" id="contenttab3">
+        <h3>Tab3 Content</h3>
+    </div>
 </div>
